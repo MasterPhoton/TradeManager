@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "trademanager:items/vendingmachine",
+    "east": "trademanager:items/vendingmachine",
+    "north": "trademanager:items/vendingmachine",
+    "particle": "trademanager:items/vendingmachine",
+    "south": "trademanager:items/vendingmachine",
+    "up": "trademanager:items/vendingmachine",
+    "west": "trademanager:items/vendingmachine"
+  }
+}
