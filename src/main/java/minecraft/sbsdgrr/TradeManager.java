@@ -1,5 +1,6 @@
 package minecraft.sbsdgrr;
 
+import minecraft.sbsdgrr.registry.ModBlocks;
 import minecraft.sbsdgrr.registry.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -10,5 +11,6 @@ public class TradeManager implements ModInitializer {
     @Override
     public void onInitialize() {
         ModItems.registerItems();
+        ModBlocks.registerBlocks();
     }
 }
