@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "minecraft.sbsdgrr.TradeManager"
+    ],
+    "client": [
+      "minecraft.sbsdgrr.TradeManagerClient"
     ]
   },
   "mixins": [

@@ -6,13 +6,19 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.profiler.Sampler;
 import org.apache.logging.log4j.LogManager;
@@ -46,8 +52,8 @@ public class ModKeys {
                 int chestFlag = 0;
                 int flight = 0;
                 /*check if swapping possible or not*/
-                if (!player.getInventory().getStack(38).isEmpty()) {
-                    chestItem = player.getInventory().getStack(38);
+                if (!player.getInventory().getStack(chest_slot).isEmpty()) {
+                    chestItem = player.getInventory().getStack(chest_slot);
                     chestFlag = 1;
                     log.info("Chest item on " + chestItem.toString());
                 } else {
@@ -84,29 +90,31 @@ public class ModKeys {
                 } else {
                     /*temp item var*/
                     ItemStack tempItem = swapItem;
-                    Inventory inv=player.getInventory();
+                    PlayerInventory inv = player.getInventory();
+
+                    /*exp*/
+                    ClientPlayerInteractionManager interactionManager = client.interactionManager;
+                    SimpleInventory simpleInventory=new SimpleInventory();
+
+
+                    /*interaction button starts from Hotbar[1-9] then it takes slot values. quite complicated*/
+                    swap_slot=(swap_slot<9)?(swap_slot+36):swap_slot;
+
+
                     /*swap elytra with chestplate and display msg*/
                     if (flight == 0) {
-                        if(player.isFallFlying()){
-                            player.sendMessage(Text.of("Elyta is active"),false);
-                        }
-                        else{
-                            player.getInventory().setStack(swap_slot, chestItem);
-                            player.getInventory().setStack(chest_slot, tempItem);
-                            player.getInventory().markDirty();
+                        if (player.isFallFlying()) {
+                            player.sendMessage(Text.literal("Elytra is active"), true);
+                        } else {
+                            interactionManager.clickSlot(player.playerScreenHandler.syncId, swap_slot,chest_slot, SlotActionType.SWAP,player);
                             player.sendMessage(Text.literal("Flight Off"), true);
                         }
                     } else if (flight == 1) {
-                        player.getInventory().setStack(swap_slot, chestItem);
-                        player.getInventory().setStack(chest_slot, tempItem);
-                        player.getInventory().markDirty();
+                        interactionManager.clickSlot(player.playerScreenHandler.syncId, swap_slot,chest_slot, SlotActionType.SWAP,player);
                         player.sendMessage(Text.literal("Flight On"), true);
                     }
                 }
 
-
-//                int val=client.world.getScoreboard().getPlayerScore(player.getDisplayName().getString(),client.world.getScoreboard().getObjective("constant")).getScore();
-//                log.info(val);
 
             }
         });
