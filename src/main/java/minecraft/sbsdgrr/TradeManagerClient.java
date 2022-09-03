@@ -1,9 +1,9 @@
 package minecraft.sbsdgrr;
 
+import minecraft.sbsdgrr.screen.PositionedScreen;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import minecraft.sbsdgrr.registry.ModKeys;
 import net.fabricmc.api.ClientModInitializer;
 
 public class TradeManagerClient implements ClientModInitializer {
@@ -11,13 +11,8 @@ public class TradeManagerClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		try {
-			ModKeys.registerKeyBinds();
-			ModKeys.keyPressEvents();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		log.info("TradeManager clientMod Initilized");
-	}
+		log.info("TradeManager clientMod Initialized");
 
+		HandledScreens.register(TradeManager.VENDINGMACHINEBLOCK_SCREEN_HANDLER, PositionedScreen::new);
+	}
 }

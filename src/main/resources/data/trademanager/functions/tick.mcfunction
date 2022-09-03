@@ -1,1 +1,0 @@
-#execute as @a at @s store success score @s elytra_on if predicate trademanager:elytra_on
