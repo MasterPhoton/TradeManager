@@ -20,26 +20,16 @@ import minecraft.sbsdgrr.TradeManager;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.Generic3x3ContainerScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.util.math.BlockPos;
 
-public class VendingMachineScreenHandler extends Generic3x3ContainerScreenHandler implements PositionedScreenHandler {
-	private final BlockPos pos;
+public class VendingMachineScreenHandler extends SellGuiScreenHandler {
 
 	public VendingMachineScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
 		super(syncId, playerInventory);
-		this.pos = buf.readBlockPos();
 	}
 
 	public VendingMachineScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
 		super(syncId, playerInventory, inventory);
-		this.pos = BlockPos.ORIGIN;
-	}
-
-	@Override
-	public BlockPos getPos() {
-		return pos;
 	}
 
 	@Override

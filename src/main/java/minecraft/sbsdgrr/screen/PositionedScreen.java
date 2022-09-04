@@ -17,31 +17,21 @@
 package minecraft.sbsdgrr.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import minecraft.sbsdgrr.screen.PositionedScreenHandler;
+import minecraft.sbsdgrr.TradeManager;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 
 import java.util.Optional;
 
 public class PositionedScreen extends HandledScreen<ScreenHandler> {
-	private static final Identifier TEXTURE = new Identifier("minecraft", "textures/gui/container/dispenser.png");
+	private static final Identifier TEXTURE = new Identifier(TradeManager.ID, "textures/screens/sell_gui.png");
 
 	public PositionedScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
-		super(handler, inventory, getPositionText(handler).orElse(title));
-	}
-
-	private static Optional<Text> getPositionText(ScreenHandler handler) {
-		if (handler instanceof PositionedScreenHandler) {
-			BlockPos pos = ((PositionedScreenHandler) handler).getPos();
-			return pos != null ? Optional.of(Text.literal("(" + pos.toShortString() + ")")) : Optional.empty();
-		} else {
-			return Optional.empty();
-		}
+		super(handler, inventory, title);
 	}
 
 	@Override
