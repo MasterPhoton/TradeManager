@@ -18,12 +18,14 @@ package minecraft.sbsdgrr.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import minecraft.sbsdgrr.TradeManager;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.apache.logging.log4j.core.config.builder.api.Component;
 
 import java.util.Optional;
 
@@ -31,7 +33,7 @@ public class PositionedScreen extends HandledScreen<ScreenHandler> {
 	private static final Identifier TEXTURE = new Identifier(TradeManager.ID, "textures/screens/sell_gui.png");
 
 	public PositionedScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
-		super(handler, inventory, title);
+		super(handler, inventory, Text.literal("Sell to Cloud Shop"));
 	}
 
 	@Override

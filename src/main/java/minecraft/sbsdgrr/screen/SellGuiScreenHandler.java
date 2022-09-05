@@ -22,22 +22,17 @@ public class SellGuiScreenHandler extends ScreenHandler {
         checkSize(inventory, 1);
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
-
         int i;
         int j;
-
-        this.addSlot(new Slot(inventory, 0, 24, 30));
-
+        this.addSlot(new Slot(inventory, 0, 25, 30));
         for(i = 0; i < 3; ++i) {
             for(j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 7 + j * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
-
         for(i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 7 + i * 18, 142));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
-
     }
 
     public boolean canUse(PlayerEntity player) {
@@ -46,31 +41,27 @@ public class SellGuiScreenHandler extends ScreenHandler {
 
     public ItemStack transferSlot(PlayerEntity player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot = (Slot)this.slots.get(index);
-        if (slot != null && slot.hasStack()) {
+        Slot slot = this.slots.get(index);
+        if (slot.hasStack()) {
             ItemStack itemStack2 = slot.getStack();
             itemStack = itemStack2.copy();
             if (index < 1) {
-                if (!this.insertItem(itemStack2, 9, 45, true)) {
+                if (!this.insertItem(itemStack2, 1, 37, true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.insertItem(itemStack2, 0, 9, false)) {
+            } else if (!this.insertItem(itemStack2, 0, 1, false)) {
                 return ItemStack.EMPTY;
             }
-
             if (itemStack2.isEmpty()) {
                 slot.setStack(ItemStack.EMPTY);
             } else {
                 slot.markDirty();
             }
-
             if (itemStack2.getCount() == itemStack.getCount()) {
                 return ItemStack.EMPTY;
             }
-
             slot.onTakeItem(player, itemStack2);
         }
-
         return itemStack;
     }
 
