@@ -1,6 +1,6 @@
 package minecraft.sbsdgrr;
 
-import minecraft.sbsdgrr.screen.PositionedScreen;
+import minecraft.sbsdgrr.screen.BuyPositionedScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,6 +13,6 @@ public class TradeManagerClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		log.info("TradeManager clientMod Initialized");
 
-		HandledScreens.register(TradeManager.VENDINGMACHINEBLOCK_SCREEN_HANDLER, PositionedScreen::new);
+		HandledScreens.register(TradeManager.VENDINGMACHINEBLOCK_SCREEN_HANDLER, BuyPositionedScreen::new);
 	}
 }

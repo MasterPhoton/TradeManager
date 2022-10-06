@@ -59,7 +59,7 @@ public class VendingMachineBlockEntity extends LootableContainerBlockEntity impl
 
 	@Override
 	public int size() {
-		return 3 * 3;
+		return 9 * 3;
 	}
 
 	@Override

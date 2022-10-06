@@ -22,7 +22,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandlerType;
 
-public class VendingMachineScreenHandler extends SellGuiScreenHandler {
+public class VendingMachineScreenHandler extends BuyGuiScreenHandler {
 
 	public VendingMachineScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
 		super(syncId, playerInventory);

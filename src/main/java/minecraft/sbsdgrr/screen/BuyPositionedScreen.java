@@ -25,11 +25,11 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class PositionedScreen extends HandledScreen<ScreenHandler> {
-	private static final Identifier TEXTURE = new Identifier(TradeManager.ID, "textures/screens/sell_gui.png");
+public class BuyPositionedScreen extends HandledScreen<ScreenHandler> {
+	private static final Identifier TEXTURE = new Identifier("minecraft", "textures/gui/container/shulker_box.png");
 
-	public PositionedScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
-		super(handler, inventory, Text.literal("Sell to Cloud Shop"));
+	public BuyPositionedScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
+		super(handler, inventory, Text.literal("Buy from Cloud Shop"));
 	}
 
 	@Override
